@@ -13,7 +13,7 @@ async function getTodos() {
     for (i = 0; i < todoList.length; i++) {
       const newHtml = `
         <li>
-        <input type="checkbox" class="box">
+        <input type="checkbox" class="box" onclick="check(this)">
         ${todoList[i].title}
         <button onclick ="deleteTodo(this)">X</button>
         </li>
@@ -65,3 +65,7 @@ function deleteTodo(item) {
 */
 
 document.addEventListener("DOMContentLoaded", getTodos);
+
+function check(box) {
+  box.parentElement.classList.toggle("check");
+}
