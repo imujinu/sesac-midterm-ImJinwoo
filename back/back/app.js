@@ -11,7 +11,7 @@ app.use(express.json());
 app.use("/todos", todoRouter);
 
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     app.listen(PORT, async () => {
       console.log("데이터베이스 연결 성공");

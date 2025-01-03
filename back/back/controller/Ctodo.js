@@ -46,10 +46,21 @@ exports.update = async (req, res) => {
     const { done } = req.body;
     const { id } = req.params;
 
-    const [result] = await Todo.update({ done }, { where: { id } });
+    const [result] = await Todo.update(
+      {
+        done,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    const result2 = await Todo.findOne({ where: { id } });
 
     if (Boolean(result)) {
-      res.send(result);
+      res.send(result2);
     } else {
       res.send({ message: "Todo not found" });
     }
