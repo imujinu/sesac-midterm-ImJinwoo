@@ -42,7 +42,7 @@ function addTodo() {
         </li>
         `;
   todo.insertAdjacentHTML("beforeend", newHtml);
-  text.reset();
+  text.value = "";
 }
 text.addEventListener("keydown", (key) => {
   if (key.key === "Enter") {
@@ -63,15 +63,5 @@ function deleteTodo(item) {
  - HTML 문서의 DOM 내용이 완전히 로드되었을 때 실행됩니다.
  - 따로 함수를 만들어도 좋고, 함수를 만들지 않아도 좋습니다.
 */
-
-const box = document.querySelectorAll(".box");
-const box1 = document.querySelector(".box");
-box.forEach((el) => {
-  console.log(el);
-  el.addEventListener("click", () => {
-    el.parentElement.classList.toggle("check");
-  });
-});
-console.log();
 
 document.addEventListener("DOMContentLoaded", getTodos);
