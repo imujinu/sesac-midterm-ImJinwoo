@@ -10,11 +10,10 @@ async function getTodos() {
     });
     const todoList = result.data.slice(0, 10);
 
-    console.log(todoList);
     for (i = 0; i < todoList.length; i++) {
       const newHtml = `
         <li>
-        <input type="checkbox">
+        <input type="checkbox" class="box">
         ${todoList[i].title}
         <button onclick ="deleteTodo(this)">X</button>
         </li>
@@ -31,13 +30,13 @@ async function getTodos() {
   - 입력 창에서 Enter 키 입력시에도 addTodo() 함수가 실행됩니다.
 */
 function addTodo() {
-  if (text.value == "") {
+  if (text.value == "" || text.value.length <= 0) {
     alert("빈 문자열은 추가될 수 없습니다.");
     return;
   }
   const newHtml = `
         <li>
-        <input type="checkbox">
+        <input type="checkbox" class="box">
         ${text.value}
         <button onclick ="deleteTodo(this)">X</button>
         </li>
@@ -65,12 +64,14 @@ function deleteTodo(item) {
  - 따로 함수를 만들어도 좋고, 함수를 만들지 않아도 좋습니다.
 */
 
-document.addEventListener("DOMContentLoaded", getTodos);
-
-const checked = document.querySelectorAll(".todo > ul > input");
-
-checked.forEach((el) => {
-  if (checked.checked) {
-    el.parentElement.style.textDecoration = "line-through";
-  }
+const box = document.querySelectorAll(".box");
+const box1 = document.querySelector(".box");
+box.forEach((el) => {
+  console.log(el);
+  el.addEventListener("click", () => {
+    el.parentElement.classList.toggle("check");
+  });
 });
+console.log();
+
+document.addEventListener("DOMContentLoaded", getTodos);
